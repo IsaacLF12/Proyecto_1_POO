@@ -104,8 +104,8 @@ public class Campeonato {
             Utilerias.clearScreen();
             this.carreras.get(this.carrerasCorridas).iniciarCarrera(this.equipos);
             this.carreras.get(this.carrerasCorridas).imprimirPosicionesCarrera();
-            this.actualizarCampeonato();
             this.carrerasCorridas++;
+            this.actualizarCampeonato();
             this.imprimirCampeonato();
             Utilerias.pause();
 
@@ -115,6 +115,8 @@ public class Campeonato {
     public void actualizarCampeonato(){
         this.posicionesEquipos.sort((Comparator.comparing(Equipo::getPuntajeEquipo)).reversed());
         this.posicionesPilotos.sort((Comparator.comparing(Piloto::getPuntajePiloto)).reversed());
+        if(this.carrerasCorridas==this.carreras.size())
+            this.status = false;
     }
 
     public void imprimirCampeonato(){

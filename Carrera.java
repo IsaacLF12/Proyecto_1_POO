@@ -70,7 +70,7 @@ public class Carrera {
                 posicion = (posicion+1)%numeroPilotos;
             this.posicionesCarrera.put(posicion, equipos[i].getPiloto2());
             equipos[i].getPiloto2().setPuntajePiloto(equipos[i].getPiloto2().getPuntajePiloto()+(numeroPilotos-posicion));
-            equipos[i].setPuntajeEquipo(equipos[i].getPuntajeEquipo() + equipos[i].getPiloto1().getPuntajePiloto() + equipos[i].getPiloto2().getPuntajePiloto());
+            equipos[i].setPuntajeEquipo(equipos[i].getPiloto1().getPuntajePiloto() + equipos[i].getPiloto2().getPuntajePiloto());
         }
     }
     public void imprimirPosicionesCarrera(){

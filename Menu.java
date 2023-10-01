@@ -111,16 +111,20 @@ public class Menu {
                     Utilerias.pause();
                     break;
                 case 4:
-                    int opC;
+                    int opC, activos=0;
                     Utilerias.clearScreen();
                     System.out.println("Estos son los campeonatos activos:");
                     for(int i=0; i<campeonatos.size(); i++)
                         if(campeonatos.get(i).isStatus()){
                             System.out.println("\t" + (i+1) + " " + campeonatos.get(i).getNombreCampeonato());
+                            activos++;
                         }
-                    System.out.print("Introduce el numero del campeonato que quieres inciar: ");
-                    opC = In.nextInt()-1;
-                    campeonatos.get(opC).iniciarCampeonato();
+                    if(activos>0){
+                        System.out.print("Introduce el numero del campeonato que quieres inciar: ");
+                        opC = In.nextInt()-1;
+                        campeonatos.get(opC).iniciarCampeonato();
+                    }else
+                        System.out.println("No hay campeonatos activos");
                     Utilerias.pause();
                     break;
                     default:
