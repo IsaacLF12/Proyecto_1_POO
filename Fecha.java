@@ -13,13 +13,12 @@ public class Fecha{
     private int mes;
     private int anio;
 
-    public Fecha(){
-    }
     public Fecha(int dia, int mes, int anio){
         setDia(dia);
         setMes(mes);
         setAnio(anio);
     }
+    
     public int getDia(){
         return dia;
     }

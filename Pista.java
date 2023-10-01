@@ -22,7 +22,7 @@ public class Pista {
     }
 
     public int getNumVueltas() {
-        return numVueltas;
+        return this.numVueltas;
     }
 
     public void setNumVueltas(int numVueltas) {
@@ -30,7 +30,7 @@ public class Pista {
     }
 
     public String getLugar() {
-        return lugar;
+        return this.lugar;
     }
 
     public void setLugar(String lugar) {
@@ -38,7 +38,7 @@ public class Pista {
     }
 
     public int getKilometraje() {
-        return kilometraje;
+        return this.kilometraje;
     }
 
     public void setKilometraje(int kilometraje) {
@@ -46,7 +46,7 @@ public class Pista {
     }
 
     public String getNombrePista() {
-        return nombrePista;
+        return this.nombrePista;
     }
 
     public void setNombrePista(String nombrePista) {

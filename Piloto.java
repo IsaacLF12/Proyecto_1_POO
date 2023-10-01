@@ -4,37 +4,40 @@
  */
 package proyecto1_poo;
 
+
 /**
  *
- * @author Sebjimort
+ * @author Sebjimort Doctt
  */
 public class Piloto {
     private String nombrePiloto;
     private String nacionalidad;
     private int numeroPiloto;
     private int edadPiloto;
+    private int puntajePiloto;
     
     public Piloto(String nombrePiloto, String nacionalidad, int numeroPiloto, int edadPiloto){
         this.nombrePiloto = nombrePiloto;
         this.nacionalidad = nacionalidad;
         this.numeroPiloto = numeroPiloto;
         this.edadPiloto = edadPiloto;
+        this.puntajePiloto = 0;
     }
 
     public String getNombrePiloto() {
-        return nombrePiloto;
+        return this.nombrePiloto;
     }
 
     public String getNacionalidad() {
-        return nacionalidad;
+        return this.nacionalidad;
     }
 
     public int getNumeroPiloto() {
-        return numeroPiloto;
+        return this.numeroPiloto;
     }
 
     public int getEdadPiloto() {
-        return edadPiloto;
+        return this.edadPiloto;
     }
 
     public void setNombrePiloto(String nombrePiloto) {
@@ -52,4 +55,12 @@ public class Piloto {
     public void setEdadPiloto(int edadPiloto) {
         this.edadPiloto = edadPiloto;
     } 
+    
+    public int getPuntajePiloto() {
+        return this.puntajePiloto;
+    }
+
+    public void setPuntajePiloto(int puntajePiloto) {
+        this.puntajePiloto = puntajePiloto;
+    }
 }

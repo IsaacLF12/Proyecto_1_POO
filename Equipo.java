@@ -13,16 +13,18 @@ public class Equipo {
     private int claveEquipo;
     private Piloto piloto1;
     private Piloto piloto2;
-    
+    private int puntajeEquipo;
+
     public Equipo(String nombreEquipo, int claveEquipo, Piloto piloto1, Piloto piloto2){
         this.nombreEquipo = nombreEquipo;
         this.claveEquipo = claveEquipo;
         this.piloto1 = piloto1;
         this.piloto2 = piloto2;
+        this.puntajeEquipo = 0;
     }
-
+    
     public String getNombreEquipo() {
-        return nombreEquipo;
+        return this.nombreEquipo;
     }
 
     public void setNombreEquipo(String nombreEquipo) {
@@ -30,7 +32,7 @@ public class Equipo {
     }
 
     public int getClaveEquipo() {
-        return claveEquipo;
+        return this.claveEquipo;
     }
 
     public void setClaveEquipo(int claveEquipo) {
@@ -38,7 +40,7 @@ public class Equipo {
     }
 
     public Piloto getPiloto1() {
-        return piloto1;
+        return this.piloto1;
     }
 
     public void setPiloto1(Piloto piloto1) {
@@ -46,11 +48,19 @@ public class Equipo {
     }
 
     public Piloto getPiloto2() {
-        return piloto2;
+        return this.piloto2;
     }
 
     public void setPiloto2(Piloto piloto2) {
         this.piloto2 = piloto2;
     }
-    
+
+    public int getPuntajeEquipo() {
+        return this.puntajeEquipo;
+    }
+
+    public void setPuntajeEquipo(int puntajeEquipo) {
+        this.puntajeEquipo = puntajeEquipo;
+    }
+
 }

@@ -5,21 +5,20 @@
 package proyecto1_poo;
 
 import java.util.TreeMap;
+import java.util.Random;
 /**
  *
- * @author Sebjimort
+ * @author Sebjimort, Doctt
  */
 public class Carrera {
     private Pista pista;
     private Fecha fecha;
-    private Equipo[] equipos;
     private int claveCarrera;
     private TreeMap<Integer, Piloto> posicionesCarrera;
 
-    public Carrera(Pista pista, Fecha fecha, Equipo[] equipos, int claveCarrera, TreeMap<Integer, Piloto> posicionesCarrera) {
+    public Carrera(Pista pista, Fecha fecha, int claveCarrera, TreeMap<Integer, Piloto> posicionesCarrera) {
         this.pista = pista;
         this.fecha = fecha;
-        this.equipos = equipos;
         this.claveCarrera = claveCarrera;
         this.posicionesCarrera = posicionesCarrera;
     }
@@ -40,14 +39,6 @@ public class Carrera {
         this.fecha = fecha;
     }
 
-    public Equipo[] getEquipos() {
-        return equipos;
-    }
-
-    public void setEquipos(Equipo[] equipos) {
-        this.equipos = equipos;
-    }
-
     public int getClaveCarrera() {
         return claveCarrera;
     }
@@ -64,7 +55,28 @@ public class Carrera {
         this.posicionesCarrera = posicionesCarrera;
     }
 
-    public void iniciarCarrera(){
-        
+    public void iniciarCarrera(Equipo[] equipos){
+        Random aleatorio = new Random();
+        int posicion;
+        int numeroPilotos = 2*equipos.length;
+        for(int i=0; i<equipos.length; i++){
+            posicion = ((aleatorio.nextInt(1001)+1)%numeroPilotos);
+            while(this.posicionesCarrera.containsKey(posicion))
+                posicion = (posicion+1)%numeroPilotos;
+            this.posicionesCarrera.put(posicion, equipos[i].getPiloto1());
+            equipos[i].getPiloto1().setPuntajePiloto(equipos[i].getPiloto1().getPuntajePiloto()+(numeroPilotos-posicion));
+            posicion = ((aleatorio.nextInt(1001)+1)%numeroPilotos);
+            while(this.posicionesCarrera.containsKey(posicion))
+                posicion = (posicion+1)%numeroPilotos;
+            this.posicionesCarrera.put(posicion, equipos[i].getPiloto2());
+            equipos[i].getPiloto2().setPuntajePiloto(equipos[i].getPiloto2().getPuntajePiloto()+(numeroPilotos-posicion));
+            equipos[i].setPuntajeEquipo(equipos[i].getPuntajeEquipo() + equipos[i].getPiloto1().getPuntajePiloto() + equipos[i].getPiloto2().getPuntajePiloto());
+        }
+    }
+    public void imprimirPosicionesCarrera(){
+        System.out.println("Los resultados de la carrera son los siguientes:");
+        System.out.println("\t\tPosicion\tPuntaje\t\tPiloto");
+        this.posicionesCarrera.forEach((key, value) -> System.out.println("\t\t   " + (key+1) + "\t\t+" + (this.posicionesCarrera.size()-key) + "Puntos" + "\t" + value.getNombrePiloto()));
+        System.out.println("");
     }
 }
