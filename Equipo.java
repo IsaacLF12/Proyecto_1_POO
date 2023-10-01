@@ -4,6 +4,8 @@
  */
 package proyecto1_poo;
 
+import java.util.Objects;
+
 /**
  *
  * @author Sebjimort
@@ -63,4 +65,16 @@ public class Equipo {
         this.puntajeEquipo = puntajeEquipo;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipo equipo = (Equipo) o;
+        return Objects.equals(nombreEquipo, equipo.nombreEquipo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreEquipo);
+    }
 }

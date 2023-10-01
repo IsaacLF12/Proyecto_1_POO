@@ -6,6 +6,7 @@ package proyecto1_poo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -48,7 +49,7 @@ public class Menu {
                     nombreCampeonato = In2.nextLine();
                     System.out.print("\tIntroduce el numero de equipos a participar: ");
                     numEquipos = In.nextInt();
-                    Equipo[] equipos = new Equipo[numEquipos];
+                    HashSet<Equipo> equipos = new HashSet<>();
                     for(int i=0; i<numEquipos; i++){
                         System.out.println("\tPara el Equipo " + (i+1) + ": ");
                         System.out.print("\t\tIntroduce el nombre: ");
@@ -68,7 +69,10 @@ public class Menu {
                             edadPiloto = In.nextInt();
                             pilotos[j] = new Piloto(nombrePiloto, nacionalidad, numeroPiloto, edadPiloto);
                         }
-                        equipos[i] = new Equipo(nombreEquipo, claveEquipo, pilotos[0], pilotos[1]);
+                        if(!equipos.add(new Equipo(nombreEquipo, claveEquipo, pilotos[0], pilotos[1]))){
+                            System.out.println("Ya existe ese equipo introduce otro");
+                            i--;
+                        }                              
                     }
                     LinkedList<Carrera> carreras = new LinkedList<>();
                     System.out.println("Introduce el numero de carreras en el campeonato:");
@@ -94,7 +98,7 @@ public class Menu {
                         claveCarrera = In.nextInt();
                         carreras.add(new Carrera(new Pista(numVueltas, lugar, kilometraje, nombrePista), new Fecha(dia, mes, anio), claveCarrera, new TreeMap<>()));
                     }
-                    campeonatos.add(new Campeonato(nombreCampeonato, equipos, carreras, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
+                    campeonatos.add(new Campeonato(nombreCampeonato, equipos.toArray(new Equipo[0]), carreras, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
                     Utilerias.pause();
                     break;
                 case 2:
