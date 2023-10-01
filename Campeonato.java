@@ -99,7 +99,7 @@ public class Campeonato {
         this.carrerasCorridas = carrerasCorridas;
     }
 
-    public void iniciarCampeonato(){
+    public void completarCampeonato(){
         while(this.carrerasCorridas<this.carreras.size()){
             Utilerias.clearScreen();
             this.carreras.get(this.carrerasCorridas).iniciarCarrera(this.equipos);
@@ -127,7 +127,7 @@ public class Campeonato {
         for(int i=0; i<this.posicionesEquipos.size(); i++)
             System.out.println("\t\t   " + (i+1) + "\t\t" + this.posicionesEquipos.get(i).getPuntajeEquipo() + " Puntos\t\t" + this.posicionesEquipos.get(i).getNombreEquipo());
         System.out.println("\tTabla por Pilotos");
-        System.out.println("\t\tPosicion\tPiloto\t\t\tPuntaje");
+        System.out.println("\t\tPosicion\tPuntaje\t\t\tPiloto");
         for(int i=0; i<this.posicionesPilotos.size(); i++)
             System.out.println("\t\t   " + (i+1) + "\t\t" + this.posicionesPilotos.get(i).getPuntajePiloto() + " Puntos\t\t" + this.posicionesPilotos.get(i).getNombrePiloto());
         System.out.println("");

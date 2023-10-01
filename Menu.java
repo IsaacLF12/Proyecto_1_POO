@@ -34,6 +34,7 @@ public class Menu {
         campeonatos.add(new Campeonato("Gran Premio Tokyo", equiposPrueba, carrerasPrueba, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
         //Terminando de crear campeonato
         while(true){
+            int activos, inactivos, opC;
             Utilerias.clearScreen();
             System.out.println("Sistema de administracion de automovilismo de Formula 1");
             System.out.println("\t1. Crear Campeonato\n\t2. Ver Campeonatos Finalizados\n\t3. Ver Campeonatos Activos\n\t4. Continuar Campeonato");
@@ -97,10 +98,31 @@ public class Menu {
                     Utilerias.pause();
                     break;
                 case 2:
+                    inactivos=0;
                     Utilerias.clearScreen();
-                    for(Campeonato i : campeonatos)
-                        if(!i.isStatus())
-                            i.imprimirCampeonato();
+                    System.out.println("Estos son los campeonatos finalizados:");
+                    for(int i=0; i<campeonatos.size(); i++)
+                        if(!campeonatos.get(i).isStatus()){
+                            System.out.println("Campeonato " + (i+1) + ": " + campeonatos.get(i).getNombreCampeonato());
+                            inactivos++;
+                        }
+                    if(inactivos>0){
+                        System.out.print("Introduce el numero del campeonato del que quieres ver los resultados: ");
+                        opC = In.nextInt()-1;
+                        campeonatos.get(opC).imprimirCampeonato();
+                        numCarreras = campeonatos.get(opC).getCarreras().size();
+                        System.out.println("De las " + numCarreras + " carreras, de cual quieres ver los resultados:");
+                        for(int i=0; i<numCarreras; i++)
+                            System.out.println("\t"+ (i+1) + " " + campeonatos.get(opC).getCarreras().get(i).getPista().getNombrePista());
+                        int carreraS = In.nextInt();
+                        if(carreraS<0 || carreraS>numCarreras)
+                            System.out.println("Opcion invalida");
+                        else{
+                            System.out.println("Para la carrera de " +  campeonatos.get(opC).getCarreras().get(carreraS-1).getPista().getNombrePista() + ":");
+                            campeonatos.get(opC).getCarreras().get(carreraS-1).imprimirPosicionesCarrera();
+                        }
+                    }else
+                        System.out.println("No hay campeonatos completados");
                     Utilerias.pause();
                     break;
                 case 3:
@@ -111,7 +133,7 @@ public class Menu {
                     Utilerias.pause();
                     break;
                 case 4:
-                    int opC, activos=0;
+                    activos=0;
                     Utilerias.clearScreen();
                     System.out.println("Estos son los campeonatos activos:");
                     for(int i=0; i<campeonatos.size(); i++)
@@ -120,9 +142,9 @@ public class Menu {
                             activos++;
                         }
                     if(activos>0){
-                        System.out.print("Introduce el numero del campeonato que quieres inciar: ");
+                        System.out.print("Introduce el numero del campeonato que quieres completar: ");
                         opC = In.nextInt()-1;
-                        campeonatos.get(opC).iniciarCampeonato();
+                        campeonatos.get(opC).completarCampeonato();
                     }else
                         System.out.println("No hay campeonatos activos");
                     Utilerias.pause();
