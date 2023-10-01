@@ -37,7 +37,7 @@ public class Menu {
             int activos, inactivos, opC;
             Utilerias.clearScreen();
             System.out.println("Sistema de administracion de automovilismo de Formula 1");
-            System.out.println("\t1. Crear Campeonato\n\t2. Ver Campeonatos Finalizados\n\t3. Ver Campeonatos Activos\n\t4. Continuar Campeonato");
+            System.out.println("\t1. Crear Campeonato\n\t2. Ver Campeonatos Finalizados\n\t3. Ver Campeonatos Activos");
             System.out.println("Cualquier otro numero para salir");
             switch(In.nextInt()){
                 case 1:
@@ -98,12 +98,12 @@ public class Menu {
                     Utilerias.pause();
                     break;
                 case 2:
-                    inactivos=0;
+                    inactivos = 0;
                     Utilerias.clearScreen();
                     System.out.println("Estos son los campeonatos finalizados:");
                     for(int i=0; i<campeonatos.size(); i++)
                         if(!campeonatos.get(i).isStatus()){
-                            System.out.println("Campeonato " + (i+1) + ": " + campeonatos.get(i).getNombreCampeonato());
+                            System.out.println("\t" + (i+1) + " " + campeonatos.get(i).getNombreCampeonato());
                             inactivos++;
                         }
                     if(inactivos>0){
@@ -126,27 +126,38 @@ public class Menu {
                     Utilerias.pause();
                     break;
                 case 3:
-                    Utilerias.clearScreen();
-                    for(Campeonato i : campeonatos)
-                        if(i.isStatus())
-                            i.imprimirCampeonato();
-                    Utilerias.pause();
-                    break;
-                case 4:
-                    activos=0;
+                    activos = 0;
                     Utilerias.clearScreen();
                     System.out.println("Estos son los campeonatos activos:");
                     for(int i=0; i<campeonatos.size(); i++)
                         if(campeonatos.get(i).isStatus()){
                             System.out.println("\t" + (i+1) + " " + campeonatos.get(i).getNombreCampeonato());
+                            campeonatos.get(i).imprimirCampeonato();
                             activos++;
                         }
                     if(activos>0){
-                        System.out.print("Introduce el numero del campeonato que quieres completar: ");
+                        System.out.print("Elige uno de los campeonatos para continuarlo o ingresa un numero diferente para regresar al menu principal: ");
                         opC = In.nextInt()-1;
-                        campeonatos.get(opC).completarCampeonato();
+                        if(opC<0 || opC>=campeonatos.size())
+                            System.out.println("Regresando al menu principal.");
+                        else{
+                            System.out.println("Que deseas hacer:\n\t1. Iniciar una carrera\n\t2. Completar el campeonato");
+                            switch(In.nextInt()){
+                                case 1:
+                                    campeonatos.get(opC).iniciarSiguienteCarrera();
+                                    break;
+                                case 2:
+                                    campeonatos.get(opC).completarCampeonato();
+                                    break;
+                                default:
+                                    System.out.println("Opcion invalida.");
+                                    Utilerias.pause();
+                                    break;
+                            }
+                        }
+                            
                     }else
-                        System.out.println("No hay campeonatos activos");
+                        System.out.println("No hay campeonatos activos.");
                     Utilerias.pause();
                     break;
                     default:

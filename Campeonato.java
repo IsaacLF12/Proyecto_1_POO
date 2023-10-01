@@ -99,6 +99,18 @@ public class Campeonato {
         this.carrerasCorridas = carrerasCorridas;
     }
 
+    public void iniciarSiguienteCarrera(){
+        if(this.status){
+            Utilerias.clearScreen();
+            this.carreras.get(this.carrerasCorridas).iniciarCarrera(this.equipos);
+            this.carreras.get(this.carrerasCorridas).imprimirPosicionesCarrera();
+            this.carrerasCorridas++;
+            this.actualizarCampeonato();
+            this.imprimirCampeonato();
+        }else
+            System.out.println("El campeonato se encuentra finalizado.");
+    }
+
     public void completarCampeonato(){
         while(this.carrerasCorridas<this.carreras.size()){
             Utilerias.clearScreen();
