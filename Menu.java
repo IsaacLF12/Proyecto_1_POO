@@ -104,7 +104,7 @@ public class Menu {
                             campeonatos.add(new Campeonato(nombreCampeonato, equipos.toArray(new Equipo[0]), carreras, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
                             break;
                         case 2:
-                            System.out.print("Cuantas carreras quieres que tenga el campeonato, introduce un numero entre 3 y 8: ");
+                            System.out.print("Cuantas carreras quieres que tenga el campeonato, introduce un numero entre 3 y 8 para las carreras: ");
                             numCarreras = In.nextInt();
                             while(numCarreras<3 || numCarreras>8){
                                 System.out.println("Introduce un valor valido para el numero de carreras.");
@@ -116,7 +116,6 @@ public class Menu {
                             System.out.println("Opcion invalida");
                             break;
                     }
-                    
                     Utilerias.pause();
                     break;
                 case 2:
