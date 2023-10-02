@@ -45,60 +45,78 @@ public class Menu {
                     int numEquipos, claveEquipo, numeroPiloto, edadPiloto, numCarreras, numVueltas, kilometraje, dia, mes, anio, claveCarrera;
                     String nombreCampeonato, nombreEquipo, nombrePiloto, nacionalidad, lugar, nombrePista;
                     Utilerias.clearScreen();
-                    System.out.print("\tIntroduce el nombre del Campeonato: ");
-                    nombreCampeonato = In2.nextLine();
-                    System.out.print("\tIntroduce el numero de equipos a participar: ");
-                    numEquipos = In.nextInt();
-                    HashSet<Equipo> equipos = new HashSet<>();
-                    for(int i=0; i<numEquipos; i++){
-                        System.out.println("\tPara el Equipo " + (i+1) + ": ");
-                        System.out.print("\t\tIntroduce el nombre: ");
-                        nombreEquipo = In2.nextLine();
-                        System.out.print("\t\tIntroduce la clave: ");
-                        claveEquipo = In.nextInt();
-                        Piloto[] pilotos = new Piloto[2];
-                        for(int j=0; j<2; j++){
-                            System.out.println("\t\tIntroduce los datos del piloto " + (j+1) + ": ");
-                            System.out.print("\t\t\tNombre: ");
-                            nombrePiloto = In2.nextLine();
-                            System.out.print("\t\t\tNacionalidad: ");
-                            nacionalidad = In2.nextLine();
-                            System.out.print("\t\t\tNumero: ");
-                            numeroPiloto = In.nextInt();
-                            System.out.print("\t\t\tEdad: ");
-                            edadPiloto = In.nextInt();
-                            pilotos[j] = new Piloto(nombrePiloto, nacionalidad, numeroPiloto, edadPiloto);
-                        }
-                        if(!equipos.add(new Equipo(nombreEquipo, claveEquipo, pilotos[0], pilotos[1]))){
-                            System.out.println("Ya existe ese equipo introduce otro");
-                            i--;
-                        }                              
+                    System.out.println("Elige la forma en la que quieres crear el campeonato:\n\t1. Manualmente\n\t2. De forma semi aleatoria");
+                    switch(In.nextInt()){
+                        case 1:
+                            System.out.print("\tIntroduce el nombre del Campeonato: ");
+                            nombreCampeonato = In2.nextLine();
+                            System.out.print("\tIntroduce el numero de equipos a participar: ");
+                            numEquipos = In.nextInt();
+                            HashSet<Equipo> equipos = new HashSet<>();
+                            for(int i=0; i<numEquipos; i++){
+                                System.out.println("\tPara el Equipo " + (i+1) + ": ");
+                                System.out.print("\t\tIntroduce el nombre: ");
+                                nombreEquipo = In2.nextLine();
+                                System.out.print("\t\tIntroduce la clave: ");
+                                claveEquipo = In.nextInt();
+                                Piloto[] pilotos = new Piloto[2];
+                                for(int j=0; j<2; j++){
+                                    System.out.println("\t\tIntroduce los datos del piloto " + (j+1) + ": ");
+                                    System.out.print("\t\t\tNombre: ");
+                                    nombrePiloto = In2.nextLine();
+                                    System.out.print("\t\t\tNacionalidad: ");
+                                    nacionalidad = In2.nextLine();
+                                    System.out.print("\t\t\tNumero: ");
+                                    numeroPiloto = In.nextInt();
+                                    System.out.print("\t\t\tEdad: ");
+                                    edadPiloto = In.nextInt();
+                                    pilotos[j] = new Piloto(nombrePiloto, nacionalidad, numeroPiloto, edadPiloto);
+                                }
+                                if(!equipos.add(new Equipo(nombreEquipo, claveEquipo, pilotos[0], pilotos[1]))){
+                                    System.out.println("Ya existe ese equipo introduce otro");
+                                    i--;
+                                }                              
+                            }
+                            LinkedList<Carrera> carreras = new LinkedList<>();
+                            System.out.println("Introduce el numero de carreras en el campeonato:");
+                            numCarreras = In.nextInt();
+                            for(int i=0; i<numCarreras; i++){
+                                System.out.println("\tPara la carrera " + (i+1) + " introduce:");
+                                System.out.print("\t\tNumero de vueltas de la pista: ");
+                                numVueltas = In.nextInt();
+                                System.out.print("\t\tLugar de la pista: ");
+                                lugar = In2.nextLine();
+                                System.out.print("\t\tKilometraje de la pista: ");
+                                kilometraje = In.nextInt();
+                                System.out.print("\t\tNombre de la pista: ");
+                                nombrePista = In2.nextLine();
+                                System.out.println("\t\tFecha:");
+                                System.out.print("\t\t\tDia: ");
+                                dia = In.nextInt();
+                                System.out.print("\t\t\tMes: ");
+                                mes = In.nextInt();
+                                System.out.print("\t\t\tAnio: ");
+                                anio = In.nextInt();
+                                System.out.print("\t\tClave: ");
+                                claveCarrera = In.nextInt();
+                                carreras.add(new Carrera(new Pista(numVueltas, lugar, kilometraje, nombrePista), new Fecha(dia, mes, anio), claveCarrera, new TreeMap<>()));
+                            }
+                            campeonatos.add(new Campeonato(nombreCampeonato, equipos.toArray(new Equipo[0]), carreras, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
+                            break;
+                        case 2:
+                            System.out.print("Cuantas carreras quieres que tenga el campeonato, introduce un numero entre 3 y 8: ");
+                            numCarreras = In.nextInt();
+                            while(numCarreras<3 || numCarreras>8){
+                                System.out.println("Introduce un valor valido para el numero de carreras.");
+                                numCarreras = In.nextInt();
+                            }
+                            campeonatos.add(Campeonato.crearCampeonatoRandom(numCarreras));
+                            break;
+                        default:
+                            System.out.println("Opcion invalida");
+                            break;
                     }
-                    LinkedList<Carrera> carreras = new LinkedList<>();
-                    System.out.println("Introduce el numero de carreras en el campeonato:");
-                    numCarreras = In.nextInt();
-                    for(int i=0; i<numCarreras; i++){
-                        System.out.println("\tPara la carrera " + (i+1) + " introduce:");
-                        System.out.print("\t\tNumero de vueltas de la pista: ");
-                        numVueltas = In.nextInt();
-                        System.out.print("\t\tLugar de la pista: ");
-                        lugar = In2.nextLine();
-                        System.out.print("\t\tKilometraje de la pista: ");
-                        kilometraje = In.nextInt();
-                        System.out.print("\t\tNombre de la pista: ");
-                        nombrePista = In2.nextLine();
-                        System.out.println("\t\tFecha:");
-                        System.out.print("\t\t\tDia: ");
-                        dia = In.nextInt();
-                        System.out.print("\t\t\tMes: ");
-                        mes = In.nextInt();
-                        System.out.print("\t\t\tAnio: ");
-                        anio = In.nextInt();
-                        System.out.print("\t\tClave: ");
-                        claveCarrera = In.nextInt();
-                        carreras.add(new Carrera(new Pista(numVueltas, lugar, kilometraje, nombrePista), new Fecha(dia, mes, anio), claveCarrera, new TreeMap<>()));
-                    }
-                    campeonatos.add(new Campeonato(nombreCampeonato, equipos.toArray(new Equipo[0]), carreras, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
+                    
                     Utilerias.pause();
                     break;
                 case 2:
@@ -113,17 +131,21 @@ public class Menu {
                     if(inactivos>0){
                         System.out.print("Introduce el numero del campeonato del que quieres ver los resultados: ");
                         opC = In.nextInt()-1;
-                        campeonatos.get(opC).imprimirCampeonato();
-                        numCarreras = campeonatos.get(opC).getCarreras().size();
-                        System.out.println("De las " + numCarreras + " carreras, de cual quieres ver los resultados:");
-                        for(int i=0; i<numCarreras; i++)
-                            System.out.println("\t"+ (i+1) + " " + campeonatos.get(opC).getCarreras().get(i).getPista().getNombrePista());
-                        int carreraS = In.nextInt();
-                        if(carreraS<0 || carreraS>numCarreras)
-                            System.out.println("Opcion invalida");
+                        if(opC<0 || opC>=campeonatos.size())
+                            System.out.println("Opcion invalida\nRegresando al menu principal");
                         else{
-                            System.out.println("Para la carrera de " +  campeonatos.get(opC).getCarreras().get(carreraS-1).getPista().getNombrePista() + ":");
-                            campeonatos.get(opC).getCarreras().get(carreraS-1).imprimirPosicionesCarrera();
+                            campeonatos.get(opC).imprimirCampeonato();
+                            numCarreras = campeonatos.get(opC).getCarreras().size();
+                            System.out.println("De las " + numCarreras + " carreras, de cual quieres ver los resultados:");
+                            for(int i=0; i<numCarreras; i++)
+                                System.out.println("\t"+ (i+1) + " " + campeonatos.get(opC).getCarreras().get(i).getPista().getNombrePista());
+                            int carreraS = In.nextInt();
+                            if(carreraS<0 || carreraS>numCarreras)
+                                System.out.println("Opcion invalida");
+                            else{
+                                System.out.println("Para la carrera de " +  campeonatos.get(opC).getCarreras().get(carreraS-1).getPista().getNombrePista() + ":");
+                                campeonatos.get(opC).getCarreras().get(carreraS-1).imprimirPosicionesCarrera();
+                            }
                         }
                     }else
                         System.out.println("No hay campeonatos completados");
@@ -136,7 +158,7 @@ public class Menu {
                     for(int i=0; i<campeonatos.size(); i++)
                         if(campeonatos.get(i).isStatus()){
                             System.out.println("\t" + (i+1) + " " + campeonatos.get(i).getNombreCampeonato());
-                            campeonatos.get(i).imprimirCampeonato();
+                            campeonatos.get(i).imprimirCampeonatoEquipos();
                             activos++;
                         }
                     if(activos>0){
@@ -159,13 +181,13 @@ public class Menu {
                                     break;
                             }
                         }
-                            
-                    }else
+                    }else{
                         System.out.println("No hay campeonatos activos.");
-                    Utilerias.pause();
+                        Utilerias.pause();
+                    }
                     break;
                     default:
-                    return;
+                        return;
             }
         }
     }  
