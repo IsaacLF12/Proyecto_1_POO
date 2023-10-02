@@ -159,8 +159,8 @@ public class Campeonato {
     }
 
     public void imprimirPilotos(){
-        System.out.println("Campeonato: " + this.getNombreCampeonato() + "\n\t\t\t\tPilotos Particiopantes");
-        System.out.println("\tEquipo\t\t\t   Piloto\t\t\tNacionalidad\t\t\tNumero\t\t\tEdad");
+        System.out.println("Campeonato: " + this.getNombreCampeonato() + "\n\t\t\t\t\t\tPilotos Particiopantes");
+        System.out.println("\tEquipo\t\t\tPiloto\t\t\t\tNacionalidad\t\t\tNumero\t\t\tEdad");
         for(int i=0; i<equipos.length; i++){
             System.out.println("\t"+this.getEquipos()[i].getNombreEquipo()+"\t\t"+this.getEquipos()[i].getPiloto1().getNombrePiloto()+"\t\t"+this.getEquipos()[i].getPiloto1().getNacionalidad()
                                 +"\t\t\t"+this.getEquipos()[i].getPiloto1().getNumeroPiloto()+"\t\t\t"+this.getEquipos()[i].getPiloto1().getEdadPiloto());
