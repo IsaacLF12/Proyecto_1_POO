@@ -24,21 +24,21 @@ public class Menu {
         LinkedList<Campeonato> campeonatos = new LinkedList<>();
         //Creando Campeonato desde codigo
         Equipo[] equiposPrueba = new Equipo[3];
-        equiposPrueba[0] = new Equipo("Red Bull", 458, new Piloto("Checo Perez", "Mexicano", 42, 33), new Piloto("Max Verstappen", "Belga", 18, 26));
-        equiposPrueba[1] = new Equipo("Ferrari", 512, new Piloto("Michele Alboreto", "Italiano", 15, 39), new Piloto("Lorenzo Bandini", "	Italiano", 2, 42));
-        equiposPrueba[2] = new Equipo("Mercedes", 304, new Piloto("Lewis Hamilton", "Britanico", 12, 38), new Piloto("Michael Schumacher", "	Aleman", 7, 54));
+        equiposPrueba[0] = new Equipo("Red Bull    ", 458, new Piloto("Checo Perez           ", "Mexico         ", 42, 33), new Piloto("Max Verstappen        ", "Belga          ", 18, 26));
+        equiposPrueba[1] = new Equipo("Ferrari     ", 512, new Piloto("Michele Alboreto      ", "Italiano       ", 15, 39), new Piloto("Lorenzo Bandini       ", "Italiano       ", 2, 42));
+        equiposPrueba[2] = new Equipo("Mercedes    ", 304, new Piloto("Lewis Hamilton        ", "Britanico      ", 12, 38), new Piloto("Michael Schumacher    ", "Alemania       ", 7, 54));
         LinkedList<Carrera> carrerasPrueba = new LinkedList<>();
-        carrerasPrueba.add(new Carrera(new Pista(5, "Shangai", 230, "Aintree"), new Fecha(25, 7, 2023), 458, new TreeMap<>()));
-        carrerasPrueba.add(new Carrera(new Pista(8, "Australia", 510, "Adelaida"), new Fecha(26, 7, 2023), 4502, new TreeMap<>()));
-        carrerasPrueba.add(new Carrera(new Pista(8, "Alemania", 300, "Avus"), new Fecha(29, 7, 2023), 478, new TreeMap<>()));
-        carrerasPrueba.add(new Carrera(new Pista(8, "Estados Unidos", 510, "Caesars Palace"), new Fecha(3, 8, 2023), 225, new TreeMap<>()));
+        carrerasPrueba.add(new Carrera(new Pista(5, "Shangai         ", 230, "Aintree                         "), new Fecha(25, 7, 2023), 458, new TreeMap<>()));
+        carrerasPrueba.add(new Carrera(new Pista(8, "Australia       ", 510, "Adelaida                        "), new Fecha(26, 7, 2023), 4502, new TreeMap<>()));
+        carrerasPrueba.add(new Carrera(new Pista(8, "Alemania        ", 300, "Avus                            "), new Fecha(29, 7, 2023), 478, new TreeMap<>()));
+        carrerasPrueba.add(new Carrera(new Pista(8, "Estados Unidos  ", 510, "Caesars Palace                  "), new Fecha(3, 8, 2023), 225, new TreeMap<>()));
         campeonatos.add(new Campeonato("Gran Premio Tokyo", equiposPrueba, carrerasPrueba, new ArrayList<Equipo>(), new ArrayList<Piloto>(), true));
         //Terminando de crear campeonato
         while(true){
             int activos, inactivos, opC;
             Utilerias.clearScreen();
             System.out.println("Sistema de administracion de automovilismo de Formula 1");
-            System.out.println("\t1. Crear Campeonato\n\t2. Ver Campeonatos Finalizados\n\t3. Ver Campeonatos Activos");
+            System.out.println("\t1. Crear Campeonato\n\t2. Ver Campeonatos Finalizados\n\t3. Ver Campeonatos Activos\n\t4. Ver informacion sobre los Campeonatos");
             System.out.println("Cualquier otro numero para salir");
             switch(In.nextInt()){
                 case 1:
@@ -185,6 +185,36 @@ public class Menu {
                         System.out.println("No hay campeonatos activos.");
                         Utilerias.pause();
                     }
+                    break;
+                case 4:
+                    Utilerias.clearScreen();
+                    if(campeonatos.size()==0)
+                        System.out.println("No hay campeonatos.");
+                    else{
+                        System.out.println("Campeonatos:");
+                        for(int i=0; i<campeonatos.size(); i++)
+                            System.out.println("\t" + (i+1) + " " + campeonatos.get(i).getNombreCampeonato());
+                        System.out.print("Introduce el campeonato sobre el que quieras ver mas informacion: ");
+                        opC = In.nextInt()-1;
+                        if(opC<0 || opC>=campeonatos.size())
+                            System.out.println("Opcion invalida.");
+                        else{
+                            System.out.println("Elige la informacion que desees ver:\n\t1. Pilotos Participantes\n\t2. Calendario de Carreras");
+                            switch(In.nextInt()){
+                                case 1:
+                                    campeonatos.get(opC).imprimirPilotos();
+                                    break;
+                                case 2:
+                                    campeonatos.get(opC).imprimirCalendario();
+                                    break;
+                                default:
+                                    System.out.println("Opcion invalida.");
+                                    break;
+                            }
+                        }
+                    }
+                    
+                    Utilerias.pause();
                     break;
                     default:
                         return;
