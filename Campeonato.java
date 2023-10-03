@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto1_poo;
 
 import java.util.TreeMap;
@@ -14,8 +10,9 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- *
- * @author Sebjimort
+ * Este archivo contiene la clase Campeonato, la cual se compone de las otras clases como atributos
+ * @author Daniel H., Isaac L., Sebastian J.
+ * @version 1.0
  */
 public class Campeonato {
     private String nombreCampeonato;
@@ -25,7 +22,15 @@ public class Campeonato {
     private List<Piloto> posicionesPilotos;
     private boolean status;
     private int carrerasCorridas;
-
+    /**
+    * Constructor del objeto Campeonato, inicializa los atributos con los valores que recibe como parametros.
+    * @param nombreCampeonato Nombre del campeonato
+    * @param equipos Arreglo con los equipos que participan en el campeonato
+    * @param carreras Lista ligada con las carreras del campeonato
+    * @param posicionesEquipos Lista con las posiciones actuales de los equipos en el campeonato
+    * @param posicionesPilotos Lista con las posiciones actuales de los pilotos en el campeonato
+    * @param status Booleano que indica el estado actual del campeonato (activo = true; finalizado = false)
+    */
     public Campeonato(String nombreCampeonato, Equipo[] equipos, LinkedList<Carrera> carreras, List<Equipo> posicionesEquipos,List<Piloto> posicionesPilotos, boolean status) {
         this.nombreCampeonato = nombreCampeonato;
         this.equipos = equipos;
@@ -42,66 +47,145 @@ public class Campeonato {
         }
     }
 
+    /**
+     * Getter del atributo nombreCampeonato
+     * @return Valor que tiene el atributo nombreCampeonato
+    */
+
     public String getNombreCampeonato() {
         return this.nombreCampeonato;
     }
+
+    /**
+     * Setter del atributo nombreCampeonato
+     * @param nombreCampeonato Valor con el que se quiere actualizar el atributo nombreCampeonato
+    */
 
     public void setNombreCampeonato(String nombreCampeonato) {
         this.nombreCampeonato = nombreCampeonato;
     }
 
+    /**
+     * Getter del atributo equipos
+     * @return Valor que tiene el atributo equipos
+    */
+
     public Equipo[] getEquipos() {
         return this.equipos;
     }
+
+    /**
+     * Setter del atributo equipos
+     * @param equipos Valor con el que se quiere actualizar el atributo equipos
+    */
 
     public void setEquipos(Equipo[] equipos) {
         this.equipos = equipos;
     }
 
+    /**
+     * Getter del atributo carreras
+     * @return Valor que tiene el atributo carreras
+    */
+
     public LinkedList<Carrera> getCarreras() {
         return this.carreras;
     }
+
+    /**
+     * Setter del atributo carreras
+     * @param carreras Valor con el que se quiere actualizar el atributo carreras
+    */
 
     public void setCarreras(LinkedList<Carrera> carreras) {
         this.carreras = carreras;
     }
 
+    /**
+     * Getter del atributo posicionesEquipos
+     * @return Valor que tiene el atributo posicionesEquipos
+    */
+
     public List<Equipo> getPosicionesEquipos() {
         return this.posicionesEquipos;
     }
+
+    /**
+     * Setter del atributo posicionesEquipos
+     * @param posicionesEquipos Valor con el que se quiere actualizar el atributo posicionesEquipos
+    */
 
     public void setPosicionesEquipos(List<Equipo> posicionesEquipos) {
         this.posicionesEquipos = posicionesEquipos;
     }
 
+    /**
+     * Getter del atributo posicionesPilotos
+     * @return Valor que tiene el atributo posicionesPilotos
+    */
+
     public List<Piloto> getPosicionesPilotos() {
         return this.posicionesPilotos;
     }
+
+    /**
+     * Setter del atributo posicionesPilotos
+     * @param posicionesPilotos Valor con el que se quiere actualizar el atributo posicionesPilotos
+    */
 
     public void setPosicionesPilotos(List<Piloto> posicionesPilotos) {
         this.posicionesPilotos = posicionesPilotos;
     }
 
+    /**
+     * Getter del atributo status
+     * @return Valor que tiene el atributo status
+    */
+
     public boolean isStatus() {
         return this.status;
     }
+
+    /**
+     * Getter del atributo status
+     * @return Valor que tiene el atributo status
+    */
 
     public boolean getStatus() {
         return this.status;
     }
 
+    /**
+     * Setter del atributo status
+     * @param status Valor con el que se quiere actualizar el atributo status
+    */
+
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    /**
+     * Getter del atributo carrerasCorridas
+     * @return Valor que tiene el atributo carrerasCorridas
+    */
 
     public int getCarrerasCorridas(){
         return this.carrerasCorridas;
     }
 
+    /**
+     * Setter del atributo carrerasCorridas
+     * @param carrerasCorridas Valor con el que se quiere actualizar el atributo carrerasCorridas
+    */
+
     public void setCarrerasCorridas(int carrerasCorridas){
         this.carrerasCorridas = carrerasCorridas;
     }
 
+    /**
+    * Se encarga de iniciar la siguiente carrera del objeto campeonato (unicamente una), y posteriormente actualizar las posiciones y el estado del campeonato.
+    * De ser la ultima carrera, se marca como finalizado el estado del campeonato.
+    */
     public void iniciarSiguienteCarrera(){
         if(this.status){
             Utilerias.clearScreen();
@@ -114,6 +198,10 @@ public class Campeonato {
             System.out.println("El campeonato se encuentra finalizado.");
     }
 
+    /**
+    * Ejecuta todas las carreras restantes del campeonato, mostranto los resultados al final de cada una y actualizando las tablas de posiciones.
+    * Al final cambia el estado del campeonato a finalizado.
+    */
     public void completarCampeonato(){
         while(this.carrerasCorridas<this.carreras.size()){
             Utilerias.clearScreen();
@@ -123,10 +211,13 @@ public class Campeonato {
             this.actualizarCampeonato();
             this.imprimirCampeonato();
             Utilerias.pause();
-
         }
     }
 
+    /**
+    * Actualiza las tablas de posiciones ordenandolas de acuerdo al puntaje.
+    * Si la carrera es la ultima del campeonato, cambia el estado a finalizado.
+    */
     public void actualizarCampeonato(){
         this.posicionesEquipos.sort((Comparator.comparing(Equipo::getPuntajeEquipo)).reversed());
         this.posicionesPilotos.sort((Comparator.comparing(Piloto::getPuntajePiloto)).reversed());
@@ -134,6 +225,9 @@ public class Campeonato {
             this.status = false;
     }
 
+    /**
+    * Imprime la informacion completa del campeonato (nombre, carreras corridas, tabla de posiciones por equipos y por pilotos).
+    */
     public void imprimirCampeonato(){
         System.out.println("Campeonato: " + this.getNombreCampeonato());
         System.out.println("\tCarreras Corridas: " + this.getCarrerasCorridas() + " de " + this.getCarreras().size());
@@ -148,6 +242,9 @@ public class Campeonato {
         System.out.println("");
     }
 
+    /**
+    * Imprime la informacion sobre la posiciones de los equipos en el campeonato.
+    */
     public void imprimirCampeonatoEquipos(){
         System.out.println("Campeonato: " + this.getNombreCampeonato());
         System.out.println("\tCarreras Corridas: " + this.getCarrerasCorridas() + " de " + this.getCarreras().size());
@@ -158,6 +255,9 @@ public class Campeonato {
         System.out.println("");
     }
 
+    /**
+    * Imprime la informacion sobre la posiciones de los pilotos en el campeonato.
+    */
     public void imprimirPilotos(){
         System.out.println("Campeonato: " + this.getNombreCampeonato() + "\n\t\t\t\t\t\tPilotos Participantes");
         System.out.println("\tEquipo\t\t\tPiloto\t\t\t\tNacionalidad\t\t\tNumero\t\t\tEdad");
@@ -170,6 +270,9 @@ public class Campeonato {
         System.out.println("");
     }
 
+    /**
+    * Imprime la informacion sobre las carreras (clave, pista, lugar, kilometraje, vueltas y fecha).
+    */
     public void imprimirCalendario(){
         System.out.println("Campeonato: " + this.getNombreCampeonato() + "\n\t\t\t\t\t\tCalendario de Carreras");
         System.out.println("\tClave\t\tPista\t\t\t\tLugar\t\tKilometraje\tVueltas\t\tFecha");
@@ -179,6 +282,12 @@ public class Campeonato {
             
     }
 
+    /**
+    * Genera un campeonato de manera semi-aleatoria, los equipos y pilotos siempre son los mismos, la demas informacion es una combinacion generada de forma aletoria
+    * utilizando la informacion previamente definida en las listas (nombres de campeonatos, lugares y pistas).
+    * @param numeroCarreras Numero de carreras que tendra el campeonato.
+    * @return Regresa un objeto de tipo campeonato generado de forma semi-aleatoria, listo para utilizarse en el programa.
+    */
     public static Campeonato crearCampeonatoRandom(int numeroCarreras){
         Random aleatorio = new Random();
         List<String> nombresCampeonatos = Arrays.asList("Gran Premio Shibuya", "Gran Premio Monaco", "Gran Premio Canada", "Gran Premio Austria", "Gran Premio Italia", "Gran Premio Japon",

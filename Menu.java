@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package proyecto1_poo;
 
 import java.util.ArrayList;
@@ -11,8 +7,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.TreeMap;
 /**
- *
- * @author Sebjimort
+ * Esque archivo contiene el metodo principla y las instrucciones para hacer uso de las demas clases
+ * @author Daniel H., Isaac L., Sebastian J.
+ * @version 1.0
  */
 public class Menu {
     /**
@@ -170,6 +167,7 @@ public class Menu {
                             switch(In.nextInt()){
                                 case 1:
                                     campeonatos.get(opC).iniciarSiguienteCarrera();
+                                    Utilerias.pause();
                                     break;
                                 case 2:
                                     campeonatos.get(opC).completarCampeonato();
